@@ -7,29 +7,40 @@
   <script src="scripts/lib/jquery.js" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="https://d3js.org/d3.v4.js"></script>
+  <style media="screen">
+    .bg-grey {
+      background: #eee;
+      margin-top: 20px;
+      padding-bottom: 20px;
+    }
+    .postContent {
+      height: 20px;
+      overflow-y: scroll;
+    }
+    .bar {
+      overflow-x: visible;
+    }
+  </style>
 </head>
 <body>
-  <table class="table">
-    <thead>
-      <tr class='col-md-12'>
-        <td class='col-md-4'>
-          Post content
-        </td>
-        <td class='col-md-4'>
-          Shares
-        </td>
-        <td class='col-md-4'>
-          Comments
-        </td>
-        <td class='col-md-4'>
-          Likes
-        </td>
-      </tr>
-    </thead>
-    <tbody id="content">
-
-    </tbody>
-  </table>
+  <div class="container-fluid">
+    <div class="col-md-12">
+      <div class="col-md-3">
+        Post Content
+      </div>
+      <div class="col-md-3">
+        Shares
+      </div>
+      <div class="col-md-3">
+        Comments
+      </div>
+      <div class="col-md-3">
+        Likes
+      </div>
+    </div>
+    <div class="col-md-12" id="content">
+    </div>
+  </div>
   <script src="scripts/index.js" crossorigin="anonymous"></script>
 </body>
 </html>

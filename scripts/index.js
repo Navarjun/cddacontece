@@ -7,30 +7,30 @@ d3.json("data/posts_processed.json", function(data) {
   console.log("comments", maxComments);
   console.log("likes", maxLikes);
 
-  var tempData = data.slice(0, 100);
   var table = d3.select("#content");
-  table.selectAll("tr")
+  table.selectAll("div")
     .data(data)
     .enter()
-    .append("tr")
-    .classed("col-md-12", true)
+    .append("div")
+    .classed("row", true)
+    .classed("bg-grey", function(_, i) { return i%2 == 0; })
     .each(function(d) {
       $(this).html("\
-        <td class='col-md-4'>"+
+        <div class='col-md-3 postContent'>"+
           d.message
-        + "</td> \
-        <td class='col-md-4'> \
-        <div style='height: 100%; width: "+((d.shares*100)/maxShares)+"%; background: #f00;'> "+
+        + "</div> \
+        <div class='col-md-3'> \
+        <div class='bar' style='height: 100%; width: "+((d.shares*100)/maxShares)+"%; background: #a77;'> "+
           d.shares
-        + "</div> </td> \
-        <td class='col-md-4'>\
-        <div style='height: 100%; width: "+((d.comments*100)/maxComments)+"%; background: #0f0;'> "+
+        + "</div> </div> \
+        <div class='col-md-3 bar'>\
+        <div style='height: 100%; width: "+((d.comments*100)/maxComments)+"%; background: #7a7;'> "+
           d.comments
-        + "</div> </td> \
-        <td class='col-md-4'>\
-        <div style='height: 100%; width: "+((d.likes*100)/maxLikes)+"%; background: #00f;'> "+
+        + "</div> </div> \
+        <div class='col-md-3 bar'>\
+        <div style='height: 100%; width: "+((d.likes*100)/maxLikes)+"%; background: #99a;'> "+
           d.likes
-        + "</div></td> \
+        + "</div></div> \
       ");
     });
 })
