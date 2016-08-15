@@ -16,9 +16,10 @@ d3.json("data/posts_processed.json", function(data) {
     .classed("bg-grey", function(_, i) { return i%2 == 0; })
     .each(function(d) {
       $(this).html("\
-        <div class='col-md-3 postContent'>"+
+        <div class='col-md-3 postContent'> \
+        <a href='"+d.link+"'>"+
           d.message
-        + "</div> \
+        + "</a></div> \
         <div class='col-md-3'> \
         <div class='bar' style='height: 100%; width: "+((d.shares*100)/maxShares)+"%; background: #a77;'> "+
           d.shares
