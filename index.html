@@ -5,6 +5,7 @@
   <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.css">
   <script src="scripts/lib/jquery.js" crossorigin="anonymous"></script>
+  <script src="scripts/lib/underscore-min.js" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="https://d3js.org/d3.v4.js"></script>
   <style media="screen">
@@ -20,23 +21,24 @@
     .bar {
       overflow-x: visible;
     }
+    .data-table-header {
+      padding: 10px;
+      background: #555;
+      color: #FFF;
+    }
+    .btn-sort {
+      background: rgba(0,0,0,0);
+      text-decoration: underline;
+    }
+    .btn-sort:hover {
+      color: #FFF;
+    }
   </style>
 </head>
 <body>
   <div class="container-fluid">
-    <div class="col-md-12">
-      <div class="col-md-3">
-        Post Content
-      </div>
-      <div class="col-md-3">
-        Shares
-      </div>
-      <div class="col-md-3">
-        Comments
-      </div>
-      <div class="col-md-3">
-        Likes
-      </div>
+    <div class="col-md-12 data-table-header">
+
     </div>
     <div class="col-md-12" id="content">
     </div>
