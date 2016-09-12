@@ -8,7 +8,7 @@ var tableHeader = [
 var sortCriteria = -1, sortDescending = true;
 var maxShares, maxComments, maxLikes;
 
-d3.json("data/posts_processed.json", function(x) {
+d3.json("data/posts.json", function(x) {
   data = x;
   maxShares = d3.max(data, function(d) { return d.shares; });
   maxComments = d3.max(data, function(d) { return d.comments; });
@@ -29,9 +29,11 @@ function visualize() {
     .classed("row", true)
     .classed("bg-grey", function(_, i) { return i%2 !== 0; })
     .each(function(d) {
+      var date = moment(d.created_time);
       $(this).html(""+
-        "<div class='col-md-3 postContent'>" +
-        "<a href='"+d.link+"'>"+
+        "<div class='col-md-3 postContent'><span class='text-muted'>" +
+          moment().format("dddd, MMM DD, YYYY, hh:mm a") +
+        "</span><br><a href='"+d.link+"'>"+
           d.message +
         "</a></div>" +
         "<div class='col-md-3'>" +
