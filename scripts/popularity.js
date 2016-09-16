@@ -121,9 +121,9 @@ function visualize2(filteredData) {
   max = d3.max(filteredData, function(d) { return d.created_time; });
   scaleX2 = d3.scaleTime().domain([min, max]).range([canvas2.origin.x, canvas2.origin.x + canvas2.size.width]);
   var axisX = d3.axisBottom().scale(scaleX2)
-                .ticks(d3.timeYear)
+                .ticks(d3.timeWeek)
                 .tickFormat(function(d) {
-                  return moment(d).format("MM/YYYY");
+                  return moment(d).format("MM/DD/YYYY");
                 });
 
   min = d3.min(filteredData, function(d){ return d.shares; });
@@ -148,7 +148,25 @@ function visualize2(filteredData) {
                 .attr("height", function(d) { return canvas2.size.height - scaleY2(d.shares); })
                 .attr("width", 2)
                 .attr("shares", function(d) { return d.shares; })
-                .attr("style", "fill: #A78;");
+                .attr("style", "fill: #A78;")
+                .on("mouseover", function(d) {
+                  d3.select(this).attr("width", 4);
+                })
+                .on("mouseout", function(d) {
+                  d3.select(this).attr("width", 2);
+                })
+                .on("click", function(d) {
+                  var string = "";
+                  if (d.picture) {
+                    string += "<img src='"+d.picture+"'></img>";
+                  }
+                  if (d.message) {
+                    string += "<p class='lead'>"+d.message+"</p>";
+                  }
+                  string += "<p class='lead'><span class='text-muted'>Shares: "+d.shares+" | Comments: "+d.comments+" | Likes: "+d.likes+"</span></p>";
+                  string += "<p class='text-muted'>Date: "+moment(d.created_time).format("dddd, MMMM Do YYYY, h:mm:ss a")+"</p>";
+                  d3.select("#detail-content").html(string);
+                });
 }
 
 function addBrush() {
