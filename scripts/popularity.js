@@ -33,7 +33,6 @@ d3.json("data/posts.json", function(x) {
   maxShares = d3.max(data, function(d) { return d.shares; });
   maxComments = d3.max(data, function(d) { return d.comments; });
   maxLikes = d3.max(data, function(d) { return d.likes; });
-  console.log(data[0]);
   visualize();
   // visualize2(data);
   addBrush();
@@ -167,12 +166,10 @@ function addBrush() {
 
 function brushed() {
   var s = d3.event.selection || scaleX.range();
-  console.log(s.map(scaleX.invert, scaleX));
   if (scaleX2) {
     scaleX2.domain(s.map(scaleX.invert, scaleX));
     visualize2(data.filter(function(d) { return d.created_time > scaleX2.domain()[0] && d.created_time < scaleX2.domain()[1]; }));
   } else {
     visualize2(data);
   }
-  console.log(s);
 }
