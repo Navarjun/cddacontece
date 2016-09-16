@@ -165,6 +165,7 @@ function visualize2(filteredData) {
                   }
                   string += "<p class='lead'><span class='text-muted'>Shares: "+d.shares+" | Comments: "+d.comments+" | Likes: "+d.likes+"</span></p>";
                   string += "<p class='text-muted'>Date: "+moment(d.created_time).format("dddd, MMMM Do YYYY, h:mm:ss a")+"</p>";
+                  string += "<a target='_blank' href='https://fb.com/"+d.id+"'>Link</a>"
                   d3.select("#detail-content").html(string);
                 });
 }
