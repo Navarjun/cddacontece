@@ -1,0 +1,26 @@
+body, html {
+  margin: 0px;
+  padding: 0px;
+}
+
+.axis path {
+  stroke: none;
+}
+
+.axis .tick line {
+  stroke: none;
+}
+
+.axisX .tick line {
+  stroke: rgba(100, 120, 180, 1);
+}
+
+.axisX .tick text {
+  transform: translate(5px,0) rotate(60deg);
+  text-anchor: start;
+}
+
+rect {
+  transition: fill 0.7s;
+  fill: rgba(100, 120, 180, 1);
+}
