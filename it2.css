@@ -29,6 +29,24 @@ rect {
   margin-top: 50px;
 }
 
+.likesCount path {
+  stroke: #3e8f3e;
+  stroke-width: 1;
+  fill: none;
+}
+
+.commentsCount path {
+  stroke: #e38d13;
+  stroke-width: 1;
+  fill: none;
+}
+
+.sharesCount path {
+  stroke: #b92c28;
+  stroke-width: 1;
+  fill: none;
+}
+
 .timeline {
   fill: none;
   stroke-width: 1;

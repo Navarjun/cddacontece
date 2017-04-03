@@ -99,7 +99,7 @@ function drawBarChart(data, scaleX, scaleY, ele) {
 
 }
 
-let smGs;
+let smGs, scaleX, scaleY;
 function drawSmallMultiples(data) {
   const smContainer = d3.select("#small-multiples");
   const nest = d3.nest()
@@ -132,10 +132,10 @@ function drawSmallMultiples(data) {
     .attr("height", width-20);
 
   const innerMargin = {left: 20, top: 20, right: 20, bottom: 20};
-  const scaleX = d3.scaleTime()
+  scaleX = d3.scaleTime()
     .domain([new Date(2014, 0, 1), new Date(2017, 3, 1)])
     .range([0, width-innerMargin.left-innerMargin.right]);
-  const scaleY = d3.scaleLinear()
+  scaleY = d3.scaleLinear()
     .domain([0, 300])
     .range([width-innerMargin.left-innerMargin.right, 0]);
   const lineGen = d3.line()
@@ -157,11 +157,14 @@ function drawSmallMultiples(data) {
     .attr("d", lineGen);
 }
 
-const buttons = document.querySelector(".btn");
+const buttons = document.querySelectorAll(".btn");
+console.log("xxx", buttons.length);
 for (var i = 0; i < buttons.length; i++) {
-  buttons.addEventListener("click", function() {
+  let button = buttons[i];
+  console.log(button);
+  button.addEventListener("click", function() {
     const key = d3.select(this).attr("data-key");
-    if (this.classList.includes("active")) {
+    if (this.classList.contains("active")) {
       this.classList.remove("active");
       hideLines(key);
     } else {
@@ -172,9 +175,28 @@ for (var i = 0; i < buttons.length; i++) {
 }
 
 function showLines(key) {
-  console.log(smGs.select(".key").node())
+  let g = smGs.select("."+key);
+  if (!g.node()) {
+    g = smGs.append("g")
+      .classed(key, true);
+  }
+  console.log(g.node());
+  lineGen = d3.line()
+    .x(function(d) {
+      return scaleX(new Date(d.key.split("-")[0], d.key.split("-")[1], 1));
+    })
+    .y(function(d) {
+      return scaleY(d3.sum(d.values.map(d => d[key])));
+    });
+
+  g.append("path")
+    .datum(d => {
+      return d.values;
+    })
+    .attr("d", lineGen);
 }
 
 function hideLines(key) {
-
+  let g = smGs.select("."+key);
+  g.remove();
 }
