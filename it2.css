@@ -1,13 +1,13 @@
 body, html {
   margin: 0px;
   padding: 0px;
+  background-color: rgba(0,0,0,0.1);
+}
+body {
+  min-height: 100%;
 }
 
 .axis path {
-  stroke: none;
-}
-
-.axis .tick line {
   stroke: none;
 }
 

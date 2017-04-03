@@ -1,4 +1,4 @@
-const svg = d3.select("svg").attr("width", window.innerWidth).attr("height", window.innerHeight/2.5);
+const svg = d3.select("#barchart-svg").attr("width", window.innerWidth).attr("height", window.innerHeight/2.5);
 const margin = { left: 70, top: 50, right: 50, bottom: 150 };
 const canvas = { width: svg.attr("width")-margin.left-margin.right, height: svg.attr("height")-margin.top-margin.bottom };
 const plot = svg.append("g").attr("transform", "translate("+margin.left+","+margin.top+")");
@@ -12,24 +12,8 @@ d3.csv("./data/posts.csv", (err, data) => {
       d.createdTime = new Date(parseInt(d.createdTime));
       return d;
     });
-    console.log(data[0]);
     const cf = crossfilter(data);
-    // const placeDimension = cf.dimension(d => d.placeName);
     const dateDimension = cf.dimension(d => { return d.createdTime.getFullYear()+"-"+d.createdTime.getMonth(); })
-    // const set = d3.set(data.map(d => d.placeName));
-
-    // const projection = d3.geoMercator().center([-42.225255, -22.592534]).scale(8000);
-    // const pathGen = d3.geoPath().projection(projection);
-    // const mapG = svg.append("g").classed("map", true);
-
-    // mapG.append("path")
-    //   .style("fill", "none")
-    //   .style("stroke-width", 1)
-    //   .style("stroke", "grey")
-    //   .datum(rio)
-    //   .attr("d", d => {
-    //     return pathGen(d);
-    //   });
 
     const pagesSet = d3.set(data.map(d => d.fbPageId)).values();
     const scaleX = d3.scaleOrdinal().domain(pagesSet).range(d3.range(0, canvas.width, canvas.width/parseFloat(pagesSet.length)));
@@ -67,7 +51,7 @@ d3.csv("./data/posts.csv", (err, data) => {
 
       drawBarChart(nest, scaleX, scaleY, barChart);
       dateProgress.text((month+1)+"/"+year);
-    }, 1000);
+    }, 1500);
     const axisX = d3.axisBottom().scale(scaleX);
     const axisY = d3.axisLeft().scale(scaleY).ticks(3);
 
@@ -89,21 +73,24 @@ function drawBarChart(data, scaleX, scaleY, ele) {
     .data(data, d => d.key);
   rectSel.exit()
     .transition()
-    .duration(500)
+    .duration(1000)
     .attr("height", 0)
+    .style("opacity", 0.2)
     .attr("y", scaleY.range()[0])
-    .remove();
+    // .remove();
 
   const enterSet = rectSel.enter()
     .append("rect")
     .attr("x", d => scaleX(d.key)-5)
     .attr("y", d => scaleY.range()[0])
+    .style("opacity", 0)
     .attr("width", 10)
     .attr("height", 0);
 
   enterSet.merge(rectSel)
     .transition()
-    .duration(500)
+    .duration(1000)
+    .style("opacity", 1)
     .attr("x", d => scaleX(d.key)-5)
     .attr("y", d => scaleY.range()[0] - scaleY(d.value))
     .attr("width", 10)
