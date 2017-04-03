@@ -13,10 +13,10 @@
   <script src="scripts/lib/crossfilter.min.js"></script>
 </head>
 <body>
-  <div class="container-fluid">
+  <div class="container">
     <h2>Monthly Facebook Posts Comparison</h2>
     <div class="col-sm-12">
-      <div class="col-sm-offset-2 col-sm-4">
+      <div class="col-sm-4">
         <h3><span class="lead">Month/Year: </span><span id="dateProgress"></span></h3>
       </div>
       <svg id="barchart-svg">
@@ -24,10 +24,20 @@
     </div>
     <h2>Facebook page timelines</h2>
     <div class="col-sm-12">
-      <div class="col-sm-offset-2 col-sm-4">
+      <div class="col-sm-5">
+        <p class="lead">Each line represents the number of posts on each page from Jan 2014 to March 2017:</h5>
       </div>
-      <svg id="barchart-svg">
-      </svg>
+      <div class="col-sm-7">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-success" data-key="likesCount">Likes</button>
+          <button type="button" class="btn btn-warning" data-key="commentsCount">Comments</button>
+          <button type="button" class="btn btn-danger" data-key="sharesCount">Shares</button>
+        </div>
+      </div>
+      <div class="col-md-12" id="small-multiples">
+      </div>
+      <div>
+      </div>
     </div>
   </div>
   <script src="scripts/it2.js" crossorigin="anonymous"></script>
