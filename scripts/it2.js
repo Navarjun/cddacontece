@@ -113,7 +113,7 @@ function drawSmallMultiples(data) {
     .data(nest)
     .enter()
     .append("div")
-    .attr("class", "col-sm-4 fbPageTimeline")
+    .attr("class", "col-sm-3 fbPageTimeline")
     .style("height", function() {
       width = this.getBoundingClientRect().width;
       return this.getBoundingClientRect().width+"px";
