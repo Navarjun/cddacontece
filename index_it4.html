@@ -6,25 +6,30 @@
 
   <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.css">
-  <link rel="stylesheet" type="text/css" href="it3.css">
+  <style>
+  .cloud-container {
+    /*border: 1px solid rgba(0,0,0,0.2);*/
+    margin-top: 100px;
+  }
+  h4 {
+    /*text-decoration: underline;*/
+    color: rgb(180, 100, 100);
+  }
+  </style>
   <script src="scripts/lib/jquery.js" crossorigin="anonymous"></script>
   <script src="scripts/lib/underscore-min.js" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src="https://d3js.org/d3.v4.js"></script>
-  <script src="scripts/lib/moment.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="scripts/lib/layout.js"></script>
   <script src="scripts/lib/crossfilter.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h2>Facebook Topic Commonality Analysis</h2>
-    <div class="col-sm-12">
-      <!-- <div class="col-sm-4">
-        <h3><span class="lead">Month/Year: </span><span id="dateProgress"></span></h3>
-      </div> -->
-      <div class="col-sm-12" id="commonality">
-      </div>
+  <div class="container-fluid">
+    <h2>Facebook Page Topic Analysis</h2>
+    <div class="col-sm-12" id="word-clouds">
+
     </div>
   </div>
-  <script src="scripts/it3.js" crossorigin="anonymous"></script>
+  <script src="scripts/it4.js" crossorigin="anonymous"></script>
 </body>
 </html>
